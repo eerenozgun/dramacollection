@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { HashRouter as Router, Routes, Route } from 'react-router-dom';
 import ScrollToTop from './components/ScrollToTop';
 import Header from './components/Header';
 import CartDrawer from './components/CartDrawer';
@@ -34,18 +34,11 @@ const App: React.FC = () => {
             <Header onCartClick={handleCartOpen} />
             <CartDrawer isOpen={isCartOpen} onClose={handleCartClose} />
             <Routes>
-              {/* ✅ Sepete ekleme sonrası panel açılması için prop geçildi */}
               <Route path="/" element={<Home onCartOpen={handleCartOpen} />} />
               <Route path="/home" element={<Home onCartOpen={handleCartOpen} />} />
               <Route path="/category" element={<CategoryList />} />
-              <Route
-                path="/category/:category"
-                element={<Category onCartOpen={handleCartOpen} />} // ✅ Eklendi
-              />
-              <Route
-                path="/category/:category/:id"
-                element={<ProductDetail onCartOpen={handleCartOpen} />}
-              />
+              <Route path="/category/:category" element={<Category onCartOpen={handleCartOpen} />} />
+              <Route path="/category/:category/:id" element={<ProductDetail onCartOpen={handleCartOpen} />} />
               <Route path="/cart" element={<Cart />} />
               <Route path="/favorites" element={<Favorites />} />
               <Route path="/checkout" element={<Checkout />} />

@@ -11,7 +11,6 @@ const Header: React.FC<Props> = ({ onCartClick }) => {
   const auth = useContext(AuthContext);
   const fullName = auth?.user?.name || auth?.user?.email;
 
-  // ✅ Akıllı kısaltma: sadece ilk kelime, 8 harften uzunsa kes
   const shortenName = (name?: string): string => {
     if (!name) return 'Kullanıcı';
     const firstWord = name.split(' ')[0];
@@ -21,14 +20,12 @@ const Header: React.FC<Props> = ({ onCartClick }) => {
   return (
     <header className="site-header">
       <div className="nav-bar">
-        {/* ✅ Sol blok: Logo */}
         <div className="nav-left">
           <Link to="/" className="logo-link">
             <img src="/logo.jpg" alt="Drama Collection" className="site-logo" />
           </Link>
         </div>
 
-        {/* ✅ Sağ blok: Menü linkleri */}
         <div className="nav-right">
           <nav className="nav-links">
             <Link to="/" className="nav-link">Anasayfa</Link>
@@ -38,11 +35,7 @@ const Header: React.FC<Props> = ({ onCartClick }) => {
 
             {auth?.user ? (
               <>
-                {/* ✅ Kısaltılmış isim + tooltip */}
-                <span
-                  className="nav-user"
-                  title={`Hoşgeldin, ${fullName}`}
-                >
+                <span className="nav-user" title={`Hoşgeldin, ${fullName}`}>
                   Hoşgeldin, {shortenName(fullName)}
                 </span>
                 <button onClick={auth.logout} className="nav-link">Çıkış Yap</button>

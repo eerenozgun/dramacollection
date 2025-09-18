@@ -16,8 +16,8 @@
   flex-wrap: wrap;
   max-width: 1200px;
   margin: 0 auto;
-  padding: 16px 24px; /* 🔧 Daha kompakt padding */
-  gap: 24px; /* 🔧 Logo daha sola yaklaşır */
+  padding: 16px 24px;
+  gap: 24px;
 }
 
 /* 🎯 Logo */
@@ -26,7 +26,6 @@
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  padding-left: 0;
 }
 
 .logo-link {
@@ -35,11 +34,11 @@
 }
 
 .site-logo {
-  height: 34px; /* 🔧 Bir tık daha sade */
+  height: 34px;
   width: auto;
   cursor: pointer;
   transition: transform 0.2s ease;
-  margin-right: 12px; /* 🔧 Navigasyondan ayrışsın */
+  margin-right: 12px;
 }
 
 .site-logo:hover {
@@ -57,15 +56,16 @@
 .nav-links {
   display: flex;
   align-items: center;
-  gap: 56px; /* 🔧 Sekmeler arası ferah ama dengeli */
+  gap: 56px;
   flex-wrap: wrap;
 }
 
-.nav-link {
+.nav-link,
+.cart-button {
   text-decoration: none;
   color: #333;
   font-weight: 600;
-  font-size: 16px; /* 🔧 1 punto daha sade */
+  font-size: 16px;
   padding: 8px 14px;
   border-radius: 6px;
   background-color: transparent;
@@ -83,9 +83,6 @@
 .cart-button {
   background-color: #000;
   color: #fff;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
 }
 
 /* 👤 Kullanıcı ismi */
@@ -94,8 +91,50 @@
   color: #555;
   margin-left: 1rem;
   font-size: 15px;
-  max-width: 140px; /* ✅ Biraz daha geniş alan */
+  max-width: 140px;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+
+/* 📱 Mobil optimizasyon */
+@media (max-width: 768px) {
+  .nav-bar {
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    padding: 12px 16px;
+  }
+
+  .nav-left,
+  .nav-right {
+    width: 100%;
+    justify-content: center;
+    text-align: center;
+  }
+
+  .nav-links {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .nav-link,
+  .cart-button {
+    font-size: 15px;
+    padding: 10px 16px;
+    width: 100%;
+    max-width: 280px;
+  }
+
+  .site-logo {
+    height: 28px;
+    margin: 0 auto;
+  }
+
+  .nav-user {
+    font-size: 14px;
+    margin-top: 0.5rem;
+    margin-left: 0;
+    max-width: 100%;
+  }
 }
