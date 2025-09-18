@@ -1,0 +1,66 @@
+[
+  {
+    "id": "e1",
+    "name": "Gold Hoop Earrings",
+    "price": 129.99,
+    "imageUrl": "/images/earrings1.jpg",
+    "category": "earrings",
+    "description": "Elegant gold hoops perfect for any occasion."
+  },
+  {
+    "id": "e2",
+    "name": "Pearl Stud Earrings",
+    "price": 79.99,
+    "imageUrl": "/images/earrings2.jpg",
+    "category": "earrings",
+    "description": "Classic pearl studs that add timeless charm."
+  },
+  {
+    "id": "n1",
+    "name": "Silver Necklace",
+    "price": 89.99,
+    "imageUrl": "/images/necklace1.jpg",
+    "category": "necklaces",
+    "description": "Sleek silver necklace for everyday elegance."
+  },
+  {
+    "id": "n2",
+    "name": "Rose Gold Pendant",
+    "price": 149.99,
+    "imageUrl": "/images/necklace2.jpg",
+    "category": "necklaces",
+    "description": "Romantic rose gold pendant with a modern twist."
+  },
+  {
+    "id": "b1",
+    "name": "Diamond Bracelet",
+    "price": 199.99,
+    "imageUrl": "/images/bracelet1.jpg",
+    "category": "bracelets",
+    "description": "Sparkling diamond bracelet for special moments."
+  },
+  {
+    "id": "b2",
+    "name": "Leather Wrap Bracelet",
+    "price": 59.99,
+    "imageUrl": "/images/bracelet2.jpg",
+    "category": "bracelets",
+    "description": "Casual leather wrap bracelet with a bold look."
+  },
+  {
+    "id": "p1",
+    "name": "Silver Nose Ring",
+    "price": 39.99,
+    "imageUrl": "/images/piercing1.jpg",
+    "category": "piercings",
+    "description": "Minimalist silver nose ring for everyday wear."
+  },
+  {
+    "id": "p2",
+    "name": "Gold Belly Piercing",
+    "price": 49.99,
+    "imageUrl": "/images/piercing2.jpg",
+    "category": "piercings",
+    "description": "Stylish gold belly piercing with a sleek finish."
+  }
+]

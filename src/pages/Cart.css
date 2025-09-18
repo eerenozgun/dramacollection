@@ -1,0 +1,129 @@
+/* 📦 Sepet sayfası */
+.cart-page {
+  padding: 2rem;
+  max-width: 800px;
+  margin: auto;
+}
+
+/* 🧾 Ürün listesi */
+.cart-items {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+/* 🛍️ Ürün satırı */
+.cart-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  background-color: #f5f5f5;
+  padding: 1rem;
+  border-radius: 8px;
+  border-bottom: 1px solid #eee;
+}
+
+/* 🖼️ Ürün görseli */
+.cart-image {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 6px;
+  flex-shrink: 0;
+}
+
+/* 📋 Ürün bilgileri */
+.cart-info {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+/* ➕ Butonlar */
+.cart-buttons {
+  display: flex;
+  gap: 8px;
+}
+
+.cart-buttons button {
+  padding: 0.4rem 0.8rem;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.cart-buttons button:hover {
+  background-color: #0056b3;
+}
+
+/* 🗑️ Çöp kutusu */
+.cart-delete {
+  flex-shrink: 0;
+  margin-left: auto;
+}
+
+.delete-button {
+  background: transparent;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  color: #888;
+  transition: color 0.2s ease;
+}
+
+.delete-button:hover {
+  color: #e00;
+}
+
+/* 💳 Ödeme butonu */
+.checkout-button {
+  margin-top: 1rem;
+  padding: 0.6rem 1.2rem;
+  background-color: #25D366;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.checkout-button:hover {
+  background-color: #128C7E;
+}
+
+/* 📱 Mobil uyum */
+@media (max-width: 600px) {
+  .cart-item {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .cart-image {
+    width: 100%;
+    height: auto;
+  }
+
+  .cart-info {
+    width: 100%;
+  }
+
+  .cart-buttons {
+    flex-wrap: wrap;
+  }
+
+  .cart-delete {
+    align-self: flex-end;
+    margin-top: 8px;
+  }
+
+  .checkout-button {
+    width: 100%;
+    text-align: center;
+  }
+}

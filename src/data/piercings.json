@@ -1,0 +1,37 @@
+[
+    {
+        "id": 1,
+        "name": "Gold Hoop Piercing",
+        "description": "Elegant gold hoop piercing that adds a touch of sophistication.",
+        "price": 25.99,
+        "imageUrl": "images/piercings/gold-hoop.jpg"
+    },
+    {
+        "id": 2,
+        "name": "Silver Stud Piercing",
+        "description": "Classic silver stud piercing, perfect for everyday wear.",
+        "price": 15.49,
+        "imageUrl": "images/piercings/silver-stud.jpg"
+    },
+    {
+        "id": 3,
+        "name": "Rose Gold Cartilage Piercing",
+        "description": "Stylish rose gold cartilage piercing for a trendy look.",
+        "price": 18.75,
+        "imageUrl": "images/piercings/rose-gold-cartilage.jpg"
+    },
+    {
+        "id": 4,
+        "name": "Diamond Accent Piercing",
+        "description": "Stunning piercing with a diamond accent for a touch of luxury.",
+        "price": 45.00,
+        "imageUrl": "images/piercings/diamond-accent.jpg"
+    },
+    {
+        "id": 5,
+        "name": "Colorful Gemstone Piercing",
+        "description": "Vibrant piercing featuring colorful gemstones.",
+        "price": 30.00,
+        "imageUrl": "images/piercings/colorful-gemstone.jpg"
+    }
+]

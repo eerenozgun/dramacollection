@@ -1,0 +1,37 @@
+[
+    {
+        "id": 1,
+        "name": "Elegant Silver Bracelet",
+        "description": "A beautiful silver bracelet that adds elegance to any outfit.",
+        "price": 49.99,
+        "imageUrl": "https://fiseason.com/duz-zincir-bileklik-925-gumus-bileklik-925-fi-season-11883-81-B.jpg"
+    },
+    {
+        "id": 2,
+        "name": "Gold Plated Cuff Bracelet",
+        "description": "Stylish gold plated cuff bracelet perfect for casual or formal wear.",
+        "price": 39.99,
+        "imageUrl": "https://www.elizi.com.tr/resim/urun_orta/elizi-trabzon-hasir-bileklikler-ELZ0000000369-1708435783-1.jpg"
+    },
+    {
+        "id": 3,
+        "name": "Leather Wrap Bracelet",
+        "description": "A trendy leather wrap bracelet that is both comfortable and stylish.",
+        "price": 29.99,
+        "imageUrl": "https://cdn03.ciceksepeti.com/cicek/kc6474423-1/XL/erkek-hakiki-deri-bileklik-kahverengi-manyetik-toka-orgulu-bileklik-kc6474423-1-f7242dd579a44d16bedabaa688a209fd.jpg"
+    },
+    {
+        "id": 4,
+        "name": "Beaded Friendship Bracelet",
+        "description": "A colorful beaded friendship bracelet, perfect for gifting.",
+        "price": 19.99,
+        "imageUrl": "https://cdn03.ciceksepeti.com/cicek/kcm75389682-1/XL/2-adet-miknatisli-kalp-sekilli-arkadas-sevgili-cift-bilekligi-kcm75389682-1-d6b78516b7544ed898fc12298a26cb35.jpg"
+    },
+    {
+        "id": 5,
+        "name": "Charm Bracelet",
+        "description": "A customizable charm bracelet that allows you to add your favorite charms.",
+        "price": 59.99,
+        "imageUrl": "https://acaraksesuar.com/Resim/Minik/1500x1500_thumb_acr6303.jpg"
+    }
+]

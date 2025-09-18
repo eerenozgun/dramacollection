@@ -1,0 +1,14 @@
+[
+  {
+    "id": "e1",
+    "name": "Gold Hoop Earrings",
+    "price": 129.99,
+    "image": "/images/earrings1.jpg"
+  },
+  {
+    "id": "n1",
+    "name": "Silver Necklace",
+    "price": 89.99,
+    "image": "/images/necklace1.jpg"
+  }
+]

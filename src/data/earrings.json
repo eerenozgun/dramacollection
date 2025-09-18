@@ -1,0 +1,37 @@
+[
+    {
+        "id": 1,
+        "name": "Gold Hoop Earrings",
+        "description": "Elegant gold hoop earrings perfect for any occasion.",
+        "price": 29.99,
+        "imageUrl": "https://example.com/images/gold-hoop-earrings.jpg"
+    },
+    {
+        "id": 2,
+        "name": "Silver Stud Earrings",
+        "description": "Classic silver stud earrings that never go out of style.",
+        "price": 19.99,
+        "imageUrl": "https://example.com/images/silver-stud-earrings.jpg"
+    },
+    {
+        "id": 3,
+        "name": "Pearl Drop Earrings",
+        "description": "Beautiful pearl drop earrings for a touch of elegance.",
+        "price": 39.99,
+        "imageUrl": "https://example.com/images/pearl-drop-earrings.jpg"
+    },
+    {
+        "id": 4,
+        "name": "Chandelier Earrings",
+        "description": "Stunning chandelier earrings that make a statement.",
+        "price": 49.99,
+        "imageUrl": "https://example.com/images/chandelier-earrings.jpg"
+    },
+    {
+        "id": 5,
+        "name": "Colorful Beaded Earrings",
+        "description": "Vibrant beaded earrings that add a pop of color to any outfit.",
+        "price": 24.99,
+        "imageUrl": "https://example.com/images/colorful-beaded-earrings.jpg"
+    }
+]

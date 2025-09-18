@@ -1,0 +1,162 @@
+/* Sayfa Yapısı */
+.category-page {
+  padding: 2rem;
+  background-color: #f9f9f9;
+  min-height: 100vh;
+}
+
+/* Kategori Başlığı Gradient */
+.category-page h2 {
+  text-align: center;
+  font-size: 1.8rem;
+  font-weight: 700;
+  background: linear-gradient(90deg, #000, #4da6ff);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  margin-bottom: 2rem;
+}
+
+/* ✅ Elit Arama Kutusu + İkon */
+.search-wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 600px;
+  margin: 2rem auto;
+}
+
+.search-input {
+  width: 100%;
+  height: 52px;
+  padding: 0 1.5rem;
+  border: 1px solid #ddd;
+  border-radius: 32px;
+  font-size: 1.05rem;
+  font-weight: 500;
+  background-color: #fff;
+  color: #222;
+  outline: none;
+  transition: all 0.3s ease;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.06);
+  box-sizing: border-box;
+}
+
+.search-input::placeholder {
+  color: #aaa;
+  font-weight: 400;
+}
+
+.search-input:focus {
+  border-color: #4da6ff;
+  box-shadow: 0 0 0 4px rgba(77, 166, 255, 0.25);
+}
+
+.search-icon {
+  position: absolute;
+  right: 1.2rem;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1.2rem;
+  color: #888;
+  pointer-events: none;
+}
+
+/* Ürün Listesi */
+.product-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 2rem;
+  padding: 2rem;
+}
+
+/* Ürün Kartı */
+.product-card {
+  position: relative; /* Kalp ikonunun konumlanabilmesi için */
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  padding: 1rem;
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+}
+
+.product-card:hover {
+  transform: scale(1.02);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.15);
+}
+
+.product-card img {
+  width: 100%;
+  height: 200px;
+  border-radius: 8px;
+  object-fit: cover;
+}
+
+.product-card h3 {
+  margin: 0.75rem 0 0.25rem;
+  font-size: 1.2rem;
+  color: #222;
+}
+
+.product-card p {
+  font-weight: 600;
+  color: #555;
+  margin-bottom: 0.5rem;
+}
+
+/* Kart İçindeki Buton ve Linkler */
+.product-card a,
+.product-card button {
+  display: inline-block;
+  margin: 0.4rem 0.3rem;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  text-decoration: none;
+}
+
+.product-card a {
+  background-color: #333;
+  color: white;
+}
+
+.product-card a:hover {
+  background-color: #555;
+}
+
+.product-card button {
+  background-color: #4da6ff;
+  color: white;
+  border: none;
+}
+
+.product-card button:hover {
+  background-color: #007acc;
+}
+
+/* Link Stilini Kartla Uyumlu Hale Getirme */
+.product-card-link {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+
+/* ✅ Favori Kalp İkonu */
+.favorite-btn {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  z-index: 2;
+  transition: transform 0.2s ease;
+}
+
+.favorite-btn:hover {
+  transform: scale(1.2);
+}

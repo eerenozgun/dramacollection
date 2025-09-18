@@ -1,0 +1,101 @@
+/* 📌 Header genel yapı */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background-color: #fff;
+  border-bottom: 1px solid #eee;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+/* 📐 İçerik hizalama */
+.nav-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 16px 24px; /* 🔧 Daha kompakt padding */
+  gap: 24px; /* 🔧 Logo daha sola yaklaşır */
+}
+
+/* 🎯 Logo */
+.nav-left {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding-left: 0;
+}
+
+.logo-link {
+  display: flex;
+  align-items: center;
+}
+
+.site-logo {
+  height: 34px; /* 🔧 Bir tık daha sade */
+  width: auto;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+  margin-right: 12px; /* 🔧 Navigasyondan ayrışsın */
+}
+
+.site-logo:hover {
+  transform: scale(1.05);
+}
+
+/* 🧭 Menü hizalama */
+.nav-right {
+  flex-grow: 1;
+  display: flex;
+  justify-content: flex-start;
+}
+
+/* 🔗 Menü linkleri */
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 56px; /* 🔧 Sekmeler arası ferah ama dengeli */
+  flex-wrap: wrap;
+}
+
+.nav-link {
+  text-decoration: none;
+  color: #333;
+  font-weight: 600;
+  font-size: 16px; /* 🔧 1 punto daha sade */
+  padding: 8px 14px;
+  border-radius: 6px;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.nav-link:hover {
+  background-color: #f2f2f2;
+  color: #007acc;
+}
+
+/* 🛒 Sepet butonu */
+.cart-button {
+  background-color: #000;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+/* 👤 Kullanıcı ismi */
+.nav-user {
+  font-weight: 600;
+  color: #555;
+  margin-left: 1rem;
+  font-size: 15px;
+  max-width: 140px; /* ✅ Biraz daha geniş alan */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

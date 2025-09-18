@@ -1,0 +1,37 @@
+[
+    {
+        "id": 1,
+        "name": "Gold Pendant Necklace",
+        "description": "A beautiful gold pendant necklace that adds elegance to any outfit.",
+        "price": 49.99,
+        "imageUrl": "https://example.com/images/gold-pendant-necklace.jpg"
+    },
+    {
+        "id": 2,
+        "name": "Silver Chain Necklace",
+        "description": "A classic silver chain necklace perfect for everyday wear.",
+        "price": 29.99,
+        "imageUrl": "https://example.com/images/silver-chain-necklace.jpg"
+    },
+    {
+        "id": 3,
+        "name": "Pearl Necklace",
+        "description": "A timeless pearl necklace that exudes sophistication.",
+        "price": 79.99,
+        "imageUrl": "https://example.com/images/pearl-necklace.jpg"
+    },
+    {
+        "id": 4,
+        "name": "Leather Cord Necklace",
+        "description": "A trendy leather cord necklace with a unique pendant.",
+        "price": 34.99,
+        "imageUrl": "https://example.com/images/leather-cord-necklace.jpg"
+    },
+    {
+        "id": 5,
+        "name": "Gemstone Necklace",
+        "description": "A stunning gemstone necklace that adds a pop of color.",
+        "price": 59.99,
+        "imageUrl": "https://example.com/images/gemstone-necklace.jpg"
+    }
+]
