@@ -1,6 +1,7 @@
 {
   "name": "jewelry-website",
   "version": "1.0.0",
+  "homepage": ".",
   "description": "A website showcasing various jewelry products including earrings, necklaces, bracelets, and piercings.",
   "main": "src/index.js",
   "scripts": {
@@ -29,6 +30,7 @@
     "necklaces",
     "bracelets",
     "piercings"
+    
   ],
   "author": "Your Name",
   "license": "MIT",
