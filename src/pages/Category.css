@@ -160,3 +160,25 @@
 .favorite-btn:hover {
   transform: scale(1.2);
 }
+
+/* Mobile grid refinements */
+@media (max-width: 768px) {
+  .category-page {
+    padding: 1rem;
+  }
+
+  .category-page h2 {
+    font-size: 1.5rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .product-list {
+    gap: 1rem;
+    padding: 0.5rem;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .product-card img {
+    height: 160px;
+  }
+}

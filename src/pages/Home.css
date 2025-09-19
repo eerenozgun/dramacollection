@@ -73,7 +73,7 @@
 }
 
 .product-card {
-  width: 220px;
+  width: min(220px, 44vw);
   background-color: #fff;
   border-radius: 12px;
   box-shadow: 0 4px 12px rgba(0,0,0,0.1);
@@ -121,3 +121,41 @@
   background-color: #444;
 }
 
+/* Mobile tweaks */
+@media (max-width: 768px) {
+  .home-wrapper {
+    background-attachment: scroll; /* Better performance on mobile */
+  }
+
+  .home-content {
+    padding: 1rem;
+  }
+
+  .home-content h1 {
+    font-size: 1.6rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .search-wrapper {
+    max-width: 100%;
+    margin: 0 0 0.75rem;
+  }
+
+  .product-list {
+    gap: 1rem;
+    margin-top: 1rem;
+  }
+
+  .product-card {
+    width: 46%;
+    max-width: 220px;
+  }
+
+  .product-card h3 {
+    font-size: 1rem;
+  }
+
+  .nav-link.cart-button {
+    width: 100%;
+  }
+}

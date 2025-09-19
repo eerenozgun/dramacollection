@@ -40,3 +40,25 @@
 .whatsapp-button:hover {
   background-color: #128C7E;
 }
+
+/* Mobile adjustments */
+@media (max-width: 768px) {
+  .checkout-page {
+    padding: 1rem;
+    border-radius: 0;
+  }
+
+  .checkout-item {
+    align-items: flex-start;
+  }
+
+  .checkout-image {
+    width: 64px;
+    height: 64px;
+  }
+
+  .whatsapp-button {
+    width: 100%;
+    text-align: center;
+  }
+}
