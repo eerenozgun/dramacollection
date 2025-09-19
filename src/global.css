@@ -1,16 +1,21 @@
-/* Temel Reset ve Font Ayarı */
+/* Temel Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 html {
-  font-size: clamp(14px, 2vw, 18px);
+  font-size: 16px;
   scroll-behavior: smooth;
 }
 
 body {
-  margin: 0;
-  padding: 0;
-  font-family: 'Poppins', 'Segoe UI', sans-serif;
+  font-family: 'Segoe UI', 'Poppins', sans-serif;
   background-color: #f9f9f9;
   color: #333;
   line-height: 1.6;
+  min-height: 100vh;
 }
 
 /* Root ve Container */
@@ -21,9 +26,9 @@ body {
 }
 
 .container {
-  padding: 16px;
   max-width: 1200px;
   margin: 0 auto;
+  padding: 24px;
 }
 
 /* Linkler */
@@ -40,7 +45,7 @@ img {
   object-fit: cover;
 }
 
-/* Buton ve Input */
+/* Form Elemanları */
 button,
 input,
 select,
@@ -50,13 +55,16 @@ textarea {
   border-radius: 8px;
   border: 1px solid #ccc;
   width: 100%;
-  box-sizing: border-box;
 }
 
 /* Mobil Optimizasyon */
 @media (max-width: 768px) {
+  html {
+    font-size: 15px;
+  }
+
   .container {
-    padding: 12px;
+    padding: 16px;
   }
 
   h1 {
@@ -67,19 +75,18 @@ textarea {
     font-size: 1.25rem;
   }
 
-  .navbar {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
   .product-card {
     flex-direction: column;
     gap: 16px;
   }
 
+  .navbar {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
   button,
-  input,
-  select {
+  input {
     font-size: 1rem;
     padding: 12px;
   }
