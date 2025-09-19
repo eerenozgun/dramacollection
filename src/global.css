@@ -5,17 +5,25 @@
   box-sizing: border-box;
 }
 
-html {
-  font-size: 16px;
-  scroll-behavior: smooth;
-}
-
-body {
-  font-family: 'Poppins', 'Segoe UI', sans-serif;
-  background-color: #f9f9f9;
+html, body {
+  height: 100%;
+  font-family: 'Segoe UI', 'Poppins', sans-serif;
+  background-color: #e0e0e0;
   color: #333;
   line-height: 1.6;
+}
+
+/* Root ve Ana Container */
+#root,
+.app-container {
+  background-color: #e0e0e0;
   min-height: 100vh;
+}
+
+/* Linkler */
+a {
+  text-decoration: none;
+  color: inherit;
 }
 
 /* Görseller */
@@ -26,109 +34,52 @@ img {
   object-fit: cover;
 }
 
-/* Linkler */
-a {
-  text-decoration: none;
-  color: inherit;
+/* Butonlar */
+button {
+  font-size: 1rem;
+  padding: 10px 16px;
+  border: none;
+  border-radius: 6px;
+  background-color: #333;
+  color: #fff;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 
-/* Form Elemanları */
-button,
+button:hover {
+  background-color: #555;
+}
+
+/* Inputlar */
 input,
 select,
 textarea {
   font-size: 1rem;
-  padding: 12px 16px;
-  border-radius: 8px;
+  padding: 10px 12px;
+  border-radius: 6px;
   border: 1px solid #ccc;
   width: 100%;
+  box-sizing: border-box;
 }
 
 /* Container */
 .container {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 24px;
+  padding: 32px;
 }
 
-/* Ürün Grid */
-.product-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-  gap: 24px;
-  margin-top: 32px;
+/* Başlıklar */
+h1, h2, h3 {
+  font-weight: 600;
+  margin-bottom: 16px;
 }
 
+/* Ürün Kartı */
 .product-card {
   background-color: #fff;
   border-radius: 12px;
   padding: 16px;
   box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
   text-align: center;
-}
-
-.product-card img {
-  border-radius: 8px;
-  margin-bottom: 12px;
-}
-
-.product-card h3 {
-  font-size: 1rem;
-  margin-bottom: 8px;
-}
-
-.product-card p {
-  font-size: 0.9rem;
-  color: #666;
-  margin-bottom: 12px;
-}
-
-.product-card button {
-  background-color: #222;
-  color: #fff;
-  border: none;
-  padding: 10px 16px;
-  border-radius: 6px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-.product-card button:hover {
-  background-color: #444;
-}
-
-/* Mobil Optimizasyon */
-@media (max-width: 768px) {
-  html {
-    font-size: 15px;
-  }
-
-  .container {
-    padding: 16px;
-  }
-
-  .product-grid {
-    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-    gap: 16px;
-  }
-
-  .product-card {
-    padding: 12px;
-  }
-
-  .product-card h3 {
-    font-size: 0.95rem;
-  }
-
-  .product-card p {
-    font-size: 0.85rem;
-  }
-
-  .product-card button {
-    font-size: 0.9rem;
-    padding: 8px 12px;
-  }
 }
