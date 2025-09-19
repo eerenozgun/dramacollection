@@ -2,6 +2,7 @@
 
 Welcome to the Jewelry Website project! This project is designed to showcase a variety of jewelry products, including earrings, necklaces, bracelets, and piercings. Below you will find information on how to set up and use the project.
 
+
 ## Features
 
 - **Product Categories**: Browse through different categories of jewelry.
