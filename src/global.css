@@ -1,56 +1,86 @@
-html, body {
-  height: 100%;
-  margin: 0;
-  padding: 0;
-  font-family: 'Segoe UI', sans-serif;
-  background-color: #e0e0e0
-;
-}
-#root {
-  background-color: #e0e0e0
-;
-  min-height: 100vh;
-}
-html, body {
-  height: 100%;
-  margin: 0;
-  padding: 0;
-  font-family: 'Segoe UI', sans-serif;
-  background-color: #e0e0e0
-;
+/* Temel Reset ve Font Ayarı */
+html {
+  font-size: clamp(14px, 2vw, 18px);
+  scroll-behavior: smooth;
 }
 
-#root {
-  background-color: #e0e0e0
-;
-  min-height: 100vh;
-}
-
-html, body {
-  height: 100%;
-  margin: 0;
-  padding: 0;
-  font-family: 'Segoe UI', sans-serif;
-  background-color: #e0e0e0; /* Daha belirgin gri */
-}
-
-#root {
-  background-color: #e0e0e0;
-  min-height: 100vh;
-}
-
-.app-container {
-  background-color: #e0e0e0;
-  min-height: 100vh;
-}
 body {
   margin: 0;
-  font-family: 'Poppins', sans-serif;
+  padding: 0;
+  font-family: 'Poppins', 'Segoe UI', sans-serif;
   background-color: #f9f9f9;
   color: #333;
+  line-height: 1.6;
 }
 
+/* Root ve Container */
+#root,
+.app-container {
+  background-color: #f9f9f9;
+  min-height: 100vh;
+}
+
+.container {
+  padding: 16px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Linkler */
 a {
   text-decoration: none;
   color: inherit;
+}
+
+/* Görseller */
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+}
+
+/* Buton ve Input */
+button,
+input,
+select,
+textarea {
+  font-size: 1rem;
+  padding: 12px 16px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Mobil Optimizasyon */
+@media (max-width: 768px) {
+  .container {
+    padding: 12px;
+  }
+
+  h1 {
+    font-size: 1.5rem;
+  }
+
+  h2 {
+    font-size: 1.25rem;
+  }
+
+  .navbar {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .product-card {
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  button,
+  input,
+  select {
+    font-size: 1rem;
+    padding: 12px;
+  }
 }
