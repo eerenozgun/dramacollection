@@ -1,0 +1,14 @@
+{
+  "files": {
+    "main.css": "/dramacollection/static/css/main.e958e677.css",
+    "main.js": "/dramacollection/static/js/main.f132aed3.js",
+    "static/media/bg-soft.jpg": "/dramacollection/static/media/bg-soft.eb589e01eef3dbfce3af.jpg",
+    "index.html": "/dramacollection/index.html",
+    "main.e958e677.css.map": "/dramacollection/static/css/main.e958e677.css.map",
+    "main.f132aed3.js.map": "/dramacollection/static/js/main.f132aed3.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.e958e677.css",
+    "static/js/main.f132aed3.js"
+  ]
+}
