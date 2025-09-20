@@ -53,7 +53,7 @@ const Register: React.FC = () => {
       }}
     >
       <form className="auth-card" onSubmit={handleRegister}>
-        <h2>Drama Collection'a Katıl</h2>
+        <h2>Drama Collection Ailesi'ne Katıl</h2>
         <input
           placeholder="Adınız"
           value={userName}
