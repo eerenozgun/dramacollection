@@ -15,9 +15,10 @@ const categoryNames: Record<string, string> = {
 
 interface ProductDetailProps {
   onCartOpen?: () => void;
+  onShowToast?: (message: string, type?: 'success' | 'error' | 'info', clickable?: boolean, onClick?: () => void) => void;
 }
 
-const ProductDetail: React.FC<ProductDetailProps> = ({ onCartOpen }) => {
+const ProductDetail: React.FC<ProductDetailProps> = ({ onCartOpen, onShowToast }) => {
   const { id, category } = useParams<{ id: string; category: string }>();
   const cartContext = useContext(CartContext);
   const favoritesContext = useContext(FavoritesContext);
@@ -43,7 +44,20 @@ const ProductDetail: React.FC<ProductDetailProps> = ({ onCartOpen }) => {
 
   const handleAddToCart = () => {
     addToCart(product);
-    if (onCartOpen) onCartOpen(); // ✅ Sepet panelini aç
+    if (onShowToast) {
+      // Mobilde clickable toast, desktop'ta normal toast
+      if (window.innerWidth <= 768) {
+        onShowToast(
+          `${product.name} sepete eklendi! 🛍️`, 
+          'success', 
+          true, 
+          onCartOpen
+        );
+      } else {
+        onShowToast(`${product.name} sepete eklendi! 🛍️`, 'success');
+        if (onCartOpen) onCartOpen();
+      }
+    }
   };
 
   return (
@@ -69,6 +83,9 @@ const ProductDetail: React.FC<ProductDetailProps> = ({ onCartOpen }) => {
       <button onClick={() => addToFavorites(product)}>Favorilere Ekle</button>
       <Link to={`/category/${category}`} className="back-link">
         ← {displayName} kategorisine geri dön
+      </Link>
+      <Link to="/" className="back-link home-link">
+        🏠 Anasayfaya geri dön
       </Link>
     </div>
   );

@@ -14,5 +14,13 @@
   {
     "name": "Earrings",
     "image": "/images/earrings.jpg"
+  },
+  {
+    "name": "Şahmeran",
+    "image": "/images/necklaces.jpg"
+  },
+  {
+    "name": "Y Kolye",
+    "image": "/images/necklaces.jpg"
   }
 ]

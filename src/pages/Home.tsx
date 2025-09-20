@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import './Home.css';
 import { CartContext } from '../context/CartContext';
 import { FavoritesContext } from '../context/FavoritesContext';
-import { AiOutlineHeart, AiFillHeart } from 'react-icons/ai';
+import FavoriteButton from '../components/FavoriteButton';
 import bgImage from '../assets/bg-soft.jpg';
 
 interface Product {
@@ -17,9 +17,11 @@ interface Product {
 
 type Props = {
   onCartOpen: () => void;
+  onShowToast: (message: string, type?: 'success' | 'error' | 'info', clickable?: boolean, onClick?: () => void) => void;
+  sortBy?: string;
 };
 
-const Home: React.FC<Props> = ({ onCartOpen }) => {
+const Home: React.FC<Props> = ({ onCartOpen, onShowToast, sortBy = 'name' }) => {
   const [searchTerm, setSearchTerm] = useState('');
   const navigate = useNavigate();
   const cart = useContext(CartContext);
@@ -29,10 +31,37 @@ const Home: React.FC<Props> = ({ onCartOpen }) => {
     p.name.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
+  const sortedProducts = [...filtered].sort((a, b) => {
+    switch (sortBy) {
+      case 'name':
+        return a.name.localeCompare(b.name, 'tr');
+      case 'price-low':
+        return a.price - b.price;
+      case 'price-high':
+        return b.price - a.price;
+      case 'category':
+        return a.category.localeCompare(b.category, 'tr');
+      default:
+        return 0;
+    }
+  });
+
   const handleAddToCart = (product: Product) => {
     if (cart?.addToCart) {
       cart.addToCart(product);
-      onCartOpen();
+      
+      // Mobilde clickable toast, desktop'ta normal toast
+      if (window.innerWidth <= 768) {
+        onShowToast(
+          `${product.name} sepete eklendi! 🛍️`, 
+          'success', 
+          true, 
+          onCartOpen
+        );
+      } else {
+        onShowToast(`${product.name} sepete eklendi! 🛍️`, 'success');
+        onCartOpen();
+      }
     }
   };
 
@@ -52,20 +81,27 @@ const Home: React.FC<Props> = ({ onCartOpen }) => {
       <div className="home-content">
         <h1>Drama Collection’a Hoş Geldiniz</h1>
 
-        <div className="search-wrapper">
-          <span className="search-icon">🔍</span>
-          <input
-            type="text"
-            placeholder="Tüm ürünlerde ara..."
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-            className="search-input"
-          />
+        <div className="search-wrapper-ultra">
+          <div className="search-container-ultra">
+            <div className="search-icon-ultra">
+              <span className="search-icon-symbol">🔍</span>
+              <div className="search-icon-glow"></div>
+            </div>
+            <input
+              type="text"
+              placeholder="Tüm ürünlerde ara..."
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+              className="search-input-ultra"
+            />
+            <div className="search-ripple"></div>
+            <div className="search-shine"></div>
+          </div>
         </div>
 
         <div className="product-list">
-          {filtered.length > 0 ? (
-            filtered.map((product: Product) => (
+          {sortedProducts.length > 0 ? (
+            sortedProducts.map((product: Product) => (
               <div key={product.id} className="product-card clickable">
                 <img
                   src={product.imageUrl}
@@ -91,14 +127,10 @@ const Home: React.FC<Props> = ({ onCartOpen }) => {
                   Sepete Ekle
                 </button>
 
-                <button
-                  onClick={(e) => handleToggleFavorite(e, product)}
-                  className="favorite-btn"
-                >
-                  {favorites?.isFavorite(product.id)
-                    ? AiFillHeart({ color: '#e63946', size: 22 })
-                    : AiOutlineHeart({ color: '#555', size: 22 })}
-                </button>
+                <FavoriteButton
+                  isFavorite={favorites?.isFavorite(product.id) || false}
+                  onToggle={(e) => handleToggleFavorite(e, product)}
+                />
               </div>
             ))
           ) : (

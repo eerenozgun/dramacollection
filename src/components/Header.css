@@ -26,6 +26,8 @@
   display: flex;
   align-items: center;
   justify-content: flex-start;
+  margin-right: 0;
+  margin-left: -20px;
 }
 
 .logo-link {
@@ -38,7 +40,7 @@
   width: auto;
   cursor: pointer;
   transition: transform 0.2s ease;
-  margin-right: 12px;
+  margin-right: 0;
 }
 
 .site-logo:hover {
@@ -49,41 +51,245 @@
 .nav-right {
   flex-grow: 1;
   display: flex;
-  justify-content: flex-start;
+  justify-content: flex-end;
+  align-items: center;
+  margin-right: -20px;
 }
 
 /* 🔗 Menü linkleri */
 .nav-links {
   display: flex;
   align-items: center;
-  gap: 56px;
+  gap: 24px;
   flex-wrap: wrap;
 }
 
-.nav-link,
-.cart-button {
+/* 🎨 Ultra Modern Navigasyon Linkleri - Mor Tasarım */
+.nav-link-ultra {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 20px;
   text-decoration: none;
   color: #333;
   font-weight: 600;
-  font-size: 16px;
-  padding: 8px 14px;
-  border-radius: 6px;
-  background-color: transparent;
-  border: none;
+  font-size: 15px;
+  border-radius: 25px;
+  background: linear-gradient(135deg, #f8f9ff 0%, #e8f2ff 50%, #dde8ff 100%);
+  border: 1px solid rgba(168, 85, 247, 0.2);
   cursor: pointer;
-  transition: background 0.2s ease, color 0.2s ease;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  position: relative;
+  overflow: hidden;
+  backdrop-filter: blur(10px);
+  box-shadow: 
+    0 4px 16px rgba(168, 85, 247, 0.1),
+    0 0 0 1px rgba(255, 255, 255, 0.1);
 }
 
-.nav-link:hover {
-  background-color: #f2f2f2;
-  color: #007acc;
+.nav-link-ultra:hover {
+  transform: translateY(-2px) scale(1.05);
+  background: linear-gradient(135deg, #a855f7 0%, #9333ea 50%, #7c3aed 100%);
+  color: white;
+  box-shadow: 
+    0 12px 32px rgba(168, 85, 247, 0.3),
+    0 0 0 1px rgba(255, 255, 255, 0.2);
+  border-color: rgba(255, 255, 255, 0.3);
 }
 
-/* 🛒 Sepet butonu */
-.cart-button {
-  background-color: #000;
-  color: #fff;
+.nav-icon {
+  font-size: 16px;
+  transition: transform 0.3s ease;
+  position: relative;
+  z-index: 2;
 }
+
+.nav-text {
+  position: relative;
+  z-index: 2;
+  transition: color 0.3s ease;
+}
+
+.nav-glow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.3) 0%, transparent 70%);
+  transform: translate(-50%, -50%);
+  transition: all 0.6s ease;
+  opacity: 0;
+}
+
+.nav-link-ultra:hover .nav-glow {
+  width: 100px;
+  height: 100px;
+  opacity: 1;
+}
+
+.nav-link-ultra:hover .nav-icon {
+  transform: scale(1.2) rotate(5deg);
+}
+
+/* 👤 Kullanıcı bilgisi modernleştirildi */
+.nav-user-ultra {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 20px;
+  color: #333;
+  font-weight: 600;
+  font-size: 15px;
+  border-radius: 25px;
+  background: linear-gradient(135deg, #f0f8ff 0%, #e6f3ff 50%, #dde8ff 100%);
+  border: 1px solid rgba(168, 85, 247, 0.2);
+  position: relative;
+  overflow: hidden;
+  backdrop-filter: blur(10px);
+  box-shadow: 
+    0 4px 16px rgba(168, 85, 247, 0.1),
+    0 0 0 1px rgba(255, 255, 255, 0.1);
+  cursor: default;
+}
+
+.nav-user-ultra:hover {
+  transform: translateY(-2px) scale(1.05);
+  background: linear-gradient(135deg, #a855f7 0%, #9333ea 50%, #7c3aed 100%);
+  color: white;
+  box-shadow: 
+    0 12px 32px rgba(168, 85, 247, 0.3),
+    0 0 0 1px rgba(255, 255, 255, 0.2);
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+/* 🛍️ Ultra Modern Sepet Butonu - Mor Tasarım */
+.cart-button-ultra {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 24px;
+  background: linear-gradient(135deg, #a855f7 0%, #9333ea 50%, #7c3aed 100%);
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  box-shadow: 
+    0 8px 32px rgba(168, 85, 247, 0.3),
+    0 0 0 1px rgba(255, 255, 255, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  position: relative;
+  overflow: hidden;
+  font-family: inherit;
+  backdrop-filter: blur(10px);
+}
+
+.cart-button-ultra::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+  transition: left 0.8s ease;
+}
+
+.cart-button-ultra:hover::before {
+  left: 100%;
+}
+
+.cart-button-ultra:hover {
+  transform: translateY(-4px) scale(1.02);
+  box-shadow: 
+    0 16px 40px rgba(168, 85, 247, 0.4),
+    0 0 0 1px rgba(255, 255, 255, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+  background: linear-gradient(135deg, #9333ea 0%, #7c3aed 50%, #6d28d9 100%);
+}
+
+.cart-icon-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cart-icon-ultra {
+  font-size: 20px;
+  animation: cartFloat 3s ease-in-out infinite;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+}
+
+@keyframes cartFloat {
+  0%, 100% { 
+    transform: translateY(0px) rotate(0deg); 
+  }
+  25% { 
+    transform: translateY(-2px) rotate(-2deg); 
+  }
+  50% { 
+    transform: translateY(-1px) rotate(0deg); 
+  }
+  75% { 
+    transform: translateY(-3px) rotate(2deg); 
+  }
+}
+
+.cart-ripple {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+  transform: translate(-50%, -50%);
+  animation: ripple 2s infinite;
+}
+
+@keyframes ripple {
+  0% {
+    width: 0;
+    height: 0;
+    opacity: 1;
+  }
+  100% {
+    width: 40px;
+    height: 40px;
+    opacity: 0;
+  }
+}
+
+.cart-text-ultra {
+  font-size: 15px;
+  font-weight: 700;
+  color: white;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  letter-spacing: 0.5px;
+  position: relative;
+  z-index: 2;
+}
+
+.cart-shine {
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.6), transparent);
+  transition: left 1s ease;
+  z-index: 1;
+}
+
+.cart-button-ultra:hover .cart-shine {
+  left: 100%;
+}
+
+
+
+
 
 /* 👤 Kullanıcı ismi */
 .nav-user {
@@ -97,44 +303,660 @@
   text-overflow: ellipsis;
 }
 
-/* 📱 Mobil optimizasyon */
+/* 🔄 Mini Sıralama Butonu - Premium Design */
+.mini-sort-wrapper {
+  display: flex;
+  align-items: center;
+  margin: 0 8px;
+  position: relative;
+}
+
+.sort-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  position: relative;
+}
+
+.sort-clickable {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+  position: relative;
+  overflow: hidden;
+}
+
+.sort-clickable::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s;
+}
+
+.sort-clickable:hover::before {
+  left: 100%;
+}
+
+.sort-clickable:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+}
+
+.sort-text {
+  font-size: 13px;
+  font-weight: 600;
+  color: #fff;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.sort-arrow {
+  font-size: 10px;
+  color: #fff;
+  transition: transform 0.3s ease;
+}
+
+.sort-clickable:hover .sort-arrow {
+  transform: rotate(180deg);
+}
+
+.sort-dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+  z-index: 1000;
+  overflow: hidden;
+  margin-top: 4px;
+  animation: slideDown 0.3s ease;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.sort-option {
+  padding: 12px 16px;
+  font-size: 13px;
+  font-weight: 500;
+  color: #333;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.sort-option:last-child {
+  border-bottom: none;
+}
+
+.sort-option:hover {
+  background-color: #f8f9fa;
+  color: #667eea;
+}
+
+
+/* 📱 Mobile optimization */
 @media (max-width: 768px) {
   .nav-bar {
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
-    gap: 1rem;
-    padding: 12px 16px;
+    justify-content: space-between;
+    gap: 0.5rem;
+    padding: 8px 12px;
   }
 
-  .nav-left,
+  .nav-left {
+    flex: 0 0 auto;
+    margin-right: 32px;
+  }
+
   .nav-right {
-    width: 100%;
-    justify-content: center;
-    text-align: center;
+    flex: 1;
+    justify-content: flex-end;
   }
 
   .nav-links {
-    flex-direction: column;
-    gap: 0.75rem;
-  }
-
-  .nav-link,
-  .cart-button {
-    font-size: 15px;
-    padding: 10px 16px;
-    width: 100%;
-    max-width: 280px;
+    display: none; /* Hide desktop nav on mobile */
   }
 
   .site-logo {
-    height: 28px;
-    margin: 0 auto;
+    height: 32px;
+    margin: 0;
   }
 
   .nav-user {
-    font-size: 14px;
-    margin-top: 0.5rem;
-    margin-left: 0;
-    max-width: 100%;
+    display: none; /* Hide user name on mobile */
   }
 }
+
+/* Mobile Sort Button - Always Visible */
+.mobile-sort-visible {
+  display: none;
+  position: relative;
+  margin-right: 12px;
+}
+
+.mobile-sort-visible .mobile-sort-clickable {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 12px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3);
+  position: relative;
+  overflow: hidden;
+}
+
+.mobile-sort-visible .mobile-sort-clickable::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s;
+}
+
+.mobile-sort-visible .mobile-sort-clickable:hover::before {
+  left: 100%;
+}
+
+.mobile-sort-visible .mobile-sort-clickable:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+}
+
+.mobile-sort-visible .mobile-sort-text {
+  font-size: 12px;
+  font-weight: 600;
+  color: #fff;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.mobile-sort-visible .mobile-sort-arrow {
+  font-size: 10px;
+  color: #fff;
+  transition: transform 0.3s ease;
+}
+
+.mobile-sort-visible .mobile-sort-clickable:hover .mobile-sort-arrow {
+  transform: rotate(180deg);
+}
+
+.mobile-sort-visible .mobile-sort-dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+  z-index: 1000;
+  overflow: hidden;
+  margin-top: 4px;
+  animation: slideDown 0.3s ease;
+}
+
+.mobile-sort-visible .mobile-sort-option {
+  padding: 10px 12px;
+  font-size: 12px;
+  font-weight: 500;
+  color: #333;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.mobile-sort-visible .mobile-sort-option:last-child {
+  border-bottom: none;
+}
+
+.mobile-sort-visible .mobile-sort-option:hover {
+  background-color: #f8f9fa;
+  color: #667eea;
+}
+
+/* Mobile menu button (hamburger) */
+.mobile-menu-btn {
+  display: none;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: #333;
+  padding: 8px;
+}
+
+@media (max-width: 768px) {
+  .mobile-menu-btn {
+    display: block;
+  }
+  
+  .mobile-sort-visible {
+    display: block;
+  }
+}
+
+/* Mobile menu overlay */
+.mobile-menu {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1500;
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.mobile-menu.open {
+  display: block;
+}
+
+.mobile-menu-content {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 280px;
+  height: 100%;
+  background-color: #fff;
+  padding: 1rem 1rem 2rem 2rem;
+  box-shadow: -2px 0 12px rgba(0, 0, 0, 0.1);
+  animation: slideIn 0.3s ease;
+}
+
+@keyframes slideIn {
+  from { transform: translateX(100%); }
+  to { transform: translateX(0); }
+}
+
+.mobile-menu-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+  padding: 1rem 1.5rem 1rem 3rem;
+  border-bottom: 1px solid #eee;
+}
+
+.mobile-menu-close {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: #333;
+}
+
+.mobile-nav-links {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+/* 📱 Ultra Modern Mobil Navigasyon Linkleri - Mor Tasarım */
+.mobile-nav-link-ultra {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 20px;
+  text-decoration: none;
+  color: #333;
+  font-weight: 600;
+  font-size: 16px;
+  border-radius: 15px;
+  background: linear-gradient(135deg, #f8f9ff 0%, #e8f2ff 50%, #dde8ff 100%);
+  border: 1px solid rgba(168, 85, 247, 0.2);
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  position: relative;
+  overflow: hidden;
+  backdrop-filter: blur(10px);
+  box-shadow: 
+    0 4px 16px rgba(168, 85, 247, 0.1),
+    0 0 0 1px rgba(255, 255, 255, 0.1);
+  margin-bottom: 8px;
+}
+
+.mobile-nav-link-ultra:hover {
+  transform: translateX(8px) scale(1.02);
+  background: linear-gradient(135deg, #a855f7 0%, #9333ea 50%, #7c3aed 100%);
+  color: white;
+  box-shadow: 
+    0 12px 32px rgba(168, 85, 247, 0.3),
+    0 0 0 1px rgba(255, 255, 255, 0.2);
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+.mobile-nav-icon {
+  font-size: 18px;
+  transition: transform 0.3s ease;
+  position: relative;
+  z-index: 2;
+}
+
+.mobile-nav-text {
+  position: relative;
+  z-index: 2;
+  transition: color 0.3s ease;
+}
+
+.mobile-nav-glow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.3) 0%, transparent 70%);
+  transform: translate(-50%, -50%);
+  transition: all 0.6s ease;
+  opacity: 0;
+}
+
+.mobile-nav-link-ultra:hover .mobile-nav-glow {
+  width: 120px;
+  height: 120px;
+  opacity: 1;
+}
+
+.mobile-nav-link-ultra:hover .mobile-nav-icon {
+  transform: scale(1.3) rotate(10deg);
+}
+
+/* 👤 Mobil Kullanıcı bilgisi modernleştirildi */
+.mobile-user-info-ultra {
+  margin-top: 1rem;
+  padding: 1rem;
+  background: linear-gradient(135deg, #f0f8ff 0%, #e6f3ff 50%, #dde8ff 100%);
+  border-radius: 15px;
+  border: 1px solid rgba(168, 85, 247, 0.2);
+  box-shadow: 
+    0 4px 16px rgba(168, 85, 247, 0.1),
+    0 0 0 1px rgba(255, 255, 255, 0.1);
+}
+
+.mobile-user-name-ultra {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 16px;
+  color: #333;
+  font-weight: 600;
+  font-size: 16px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #ffffff 0%, #f8f9ff 100%);
+  border: 1px solid rgba(168, 85, 247, 0.1);
+  position: relative;
+  overflow: hidden;
+  margin-bottom: 8px;
+}
+
+.mobile-user-name-ultra:hover {
+  background: linear-gradient(135deg, #a855f7 0%, #9333ea 50%, #7c3aed 100%);
+  color: white;
+  transform: translateX(4px);
+}
+
+/* 📱 Mobil Ultra Modern Sepet Butonu - Mor Tasarım */
+.mobile-cart-button-ultra {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  padding: 16px 28px;
+  background: linear-gradient(135deg, #a855f7 0%, #9333ea 50%, #7c3aed 100%);
+  border: none;
+  border-radius: 60px;
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  box-shadow: 
+    0 12px 40px rgba(168, 85, 247, 0.3),
+    0 0 0 1px rgba(255, 255, 255, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  position: relative;
+  overflow: hidden;
+  font-family: inherit;
+  backdrop-filter: blur(10px);
+  width: 100%;
+  margin-top: 1rem;
+}
+
+.mobile-cart-button-ultra::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+  transition: left 0.8s ease;
+}
+
+.mobile-cart-button-ultra:hover::before {
+  left: 100%;
+}
+
+.mobile-cart-button-ultra:hover {
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 
+    0 20px 50px rgba(168, 85, 247, 0.4),
+    0 0 0 1px rgba(255, 255, 255, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+  background: linear-gradient(135deg, #9333ea 0%, #7c3aed 50%, #6d28d9 100%);
+}
+
+.mobile-cart-icon-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.mobile-cart-icon-ultra {
+  font-size: 24px;
+  animation: cartFloat 3s ease-in-out infinite;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+}
+
+.mobile-cart-ripple {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+  transform: translate(-50%, -50%);
+  animation: ripple 2s infinite;
+}
+
+.mobile-cart-text-ultra {
+  font-size: 18px;
+  font-weight: 700;
+  color: white;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  letter-spacing: 0.5px;
+  position: relative;
+  z-index: 2;
+}
+
+.mobile-cart-shine {
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.6), transparent);
+  transition: left 1s ease;
+  z-index: 1;
+}
+
+.mobile-cart-button-ultra:hover .mobile-cart-shine {
+  left: 100%;
+}
+
+
+
+
+
+.mobile-user-info {
+  margin-top: 1rem;
+  padding: 1rem;
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  text-align: center;
+}
+
+.mobile-user-name {
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 0.5rem;
+}
+
+.mobile-logout-btn {
+  background: none;
+  border: 1px solid #ddd;
+  color: #666;
+  padding: 8px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+/* 📱 Mobil Mini Sıralama - Premium Design */
+.mobile-mini-sort-wrapper {
+  display: flex;
+  align-items: center;
+  margin: 12px 0;
+  padding: 12px 16px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-radius: 12px;
+  border: 2px solid transparent;
+  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+  position: relative;
+  overflow: hidden;
+}
+
+.mobile-sort-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  width: 100%;
+  position: relative;
+}
+
+.mobile-sort-clickable {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 16px;
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  justify-content: center;
+}
+
+.mobile-sort-clickable:hover {
+  background: rgba(255, 255, 255, 1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  transform: translateY(-1px);
+}
+
+.mobile-sort-text {
+  font-size: 14px;
+  font-weight: 600;
+  color: #2c3e50;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.mobile-sort-arrow {
+  font-size: 12px;
+  color: #2c3e50;
+  transition: transform 0.3s ease;
+}
+
+.mobile-sort-clickable:hover .mobile-sort-arrow {
+  transform: rotate(180deg);
+}
+
+.mobile-sort-dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+  z-index: 1000;
+  overflow: hidden;
+  margin-top: 6px;
+  animation: slideDown 0.3s ease;
+}
+
+.mobile-sort-option {
+  padding: 14px 16px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #333;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.mobile-sort-option:last-child {
+  border-bottom: none;
+}
+
+.mobile-sort-option:hover {
+  background-color: #f8f9fa;
+  color: #667eea;
+}
+
+.mobile-mini-sort-wrapper::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+  transition: left 0.5s;
+}
+
+.mobile-mini-sort-wrapper:hover::before {
+  left: 100%;
+}
+

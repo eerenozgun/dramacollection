@@ -6,7 +6,9 @@ const categories = [
   { name: 'Küpe', slug: 'earrings', image: '/images/earrings.jpg' },
   { name: 'Kolye', slug: 'necklaces', image: '/images/necklaces.jpg' },
   { name: 'Bileklik', slug: 'bracelets', image: '/images/bracelets.jpg' },
-  { name: 'Piercing', slug: 'piercings', image: '/images/piercings.jpg' }
+  { name: 'Piercing', slug: 'piercings', image: '/images/piercings.jpg' },
+  { name: 'Şahmeran', slug: 'şahmeran', image: '/images/necklaces.jpg' },
+  { name: 'Y Kolye', slug: 'y-kolye', image: '/images/necklaces.jpg' }
 ];
 
 const CategoryList: React.FC = () => {

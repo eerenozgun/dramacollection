@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import { FavoritesContext } from '../context/FavoritesContext';
 import { Link, useNavigate } from 'react-router-dom';
 import { Product } from '../types/Product';
-import { AiFillHeart } from 'react-icons/ai';
+import FavoriteButton from '../components/FavoriteButton';
 import './Favorites.css';
 
 const Favorites: React.FC = () => {
@@ -43,16 +43,13 @@ const Favorites: React.FC = () => {
                 Detayları Gör
               </Link>
 
-              <button
-                onClick={(e) => {
+              <FavoriteButton
+                isFavorite={true}
+                onToggle={(e) => {
                   e.stopPropagation();
                   removeFromFavorites(product.id);
                 }}
-                className="favorite-btn"
-                title="Favorilerden çıkar"
-              >
-                {AiFillHeart({ color: '#e63946', size: 22 })}
-              </button>
+              />
             </div>
           ))}
         </div>

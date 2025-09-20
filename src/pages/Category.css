@@ -18,48 +18,160 @@
   margin-bottom: 2rem;
 }
 
-/* ✅ Elit Arama Kutusu + İkon */
-.search-wrapper {
+/* 🔍 Ultra Modern Arama Kutusu - Mor Tasarım */
+.search-wrapper-ultra {
   position: relative;
   width: 100%;
   max-width: 600px;
   margin: 2rem auto;
+  display: flex;
+  justify-content: center;
 }
 
-.search-input {
+.search-container-ultra {
+  position: relative;
   width: 100%;
-  height: 52px;
-  padding: 0 1.5rem;
-  border: 1px solid #ddd;
-  border-radius: 32px;
-  font-size: 1.05rem;
-  font-weight: 500;
-  background-color: #fff;
-  color: #222;
-  outline: none;
-  transition: all 0.3s ease;
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.06);
-  box-sizing: border-box;
+  height: 60px;
+  background: linear-gradient(135deg, #a855f7 0%, #9333ea 50%, #7c3aed 100%);
+  border-radius: 50px;
+  box-shadow: 
+    0 12px 40px rgba(168, 85, 247, 0.3),
+    0 0 0 1px rgba(255, 255, 255, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  overflow: hidden;
+  backdrop-filter: blur(10px);
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
-.search-input::placeholder {
-  color: #aaa;
+.search-container-ultra:hover {
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 
+    0 20px 50px rgba(168, 85, 247, 0.4),
+    0 0 0 1px rgba(255, 255, 255, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+}
+
+.search-container-ultra:focus-within {
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 
+    0 20px 50px rgba(168, 85, 247, 0.4),
+    0 0 0 1px rgba(255, 255, 255, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+}
+
+.search-icon-ultra {
+  position: absolute;
+  left: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+}
+
+.search-icon-symbol {
+  font-size: 18px;
+  color: white;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  animation: searchPulse 2s ease-in-out infinite;
+  position: relative;
+  z-index: 2;
+}
+
+@keyframes searchPulse {
+  0%, 100% { 
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% { 
+    transform: scale(1.1);
+    opacity: 0.8;
+  }
+}
+
+.search-icon-glow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 40px;
+  height: 40px;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.3) 0%, transparent 70%);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  animation: iconGlow 3s ease-in-out infinite;
+}
+
+@keyframes iconGlow {
+  0%, 100% { 
+    opacity: 0.3;
+    transform: translate(-50%, -50%) scale(1);
+  }
+  50% { 
+    opacity: 0.6;
+    transform: translate(-50%, -50%) scale(1.2);
+  }
+}
+
+.search-input-ultra {
+  width: 100%;
+  height: 100%;
+  padding: 0 20px 0 60px;
+  border: none;
+  outline: none;
+  font-size: 16px;
+  font-weight: 500;
+  color: white;
+  background: transparent;
+  position: relative;
+  z-index: 2;
+}
+
+.search-input-ultra::placeholder {
+  color: rgba(255, 255, 255, 0.7);
   font-weight: 400;
 }
 
-.search-input:focus {
-  border-color: #4da6ff;
-  box-shadow: 0 0 0 4px rgba(77, 166, 255, 0.25);
+.search-ripple {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+  transform: translate(-50%, -50%);
+  animation: ripple 2s infinite;
 }
 
-.search-icon {
+@keyframes ripple {
+  0% {
+    width: 0;
+    height: 0;
+    opacity: 1;
+  }
+  100% {
+    width: 80px;
+    height: 80px;
+    opacity: 0;
+  }
+}
+
+.search-shine {
   position: absolute;
-  right: 1.2rem;
-  top: 50%;
-  transform: translateY(-50%);
-  font-size: 1.2rem;
-  color: #888;
-  pointer-events: none;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+  transition: left 1s ease;
+  z-index: 1;
+}
+
+.search-container-ultra:hover .search-shine {
+  left: 100%;
 }
 
 /* Ürün Listesi */
@@ -145,20 +257,48 @@
   display: block;
 }
 
-/* ✅ Favori Kalp İkonu */
-.favorite-btn {
-  position: absolute;
-  top: 12px;
-  right: 12px;
-  background: none;
-  border: none;
-  cursor: pointer;
-  z-index: 2;
-  transition: transform 0.2s ease;
+/* Eski favori buton stilleri kaldırıldı - Yeni FavoriteButton bileşeni kullanılıyor */
+
+/* Quantity Controls - Side by side layout */
+.quantity-controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
 }
 
-.favorite-btn:hover {
-  transform: scale(1.2);
+.quantity-controls button {
+  width: 32px;
+  height: 32px;
+  border: none;
+  border-radius: 6px;
+  background-color: #4da6ff;
+  color: white;
+  font-size: 1.2rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.quantity-controls button:hover {
+  background-color: #007acc;
+  transform: scale(1.05);
+}
+
+.quantity-controls span {
+  font-size: 1rem;
+  font-weight: bold;
+  color: #2c3e50;
+  background-color: #ecf0f1;
+  padding: 0.4rem 0.8rem;
+  border-radius: 6px;
+  min-width: 40px;
+  text-align: center;
+  border: 2px solid #bdc3c7;
 }
 
 /* Mobile grid refinements */
@@ -180,5 +320,75 @@
 
   .product-card img {
     height: 160px;
+  }
+
+  /* Mobile quantity controls - Better mobile layout */
+  .quantity-controls {
+    gap: 0.3rem;
+    margin-top: 0.75rem;
+    padding: 0.25rem;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    border: 1px solid #e9ecef;
+  }
+
+  .quantity-controls button {
+    width: 36px;
+    height: 36px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    background-color: #4da6ff;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+
+  .quantity-controls button:hover {
+    background-color: #007acc;
+    transform: scale(1.05);
+  }
+
+  .quantity-controls button:active {
+    transform: scale(0.95);
+  }
+
+  .quantity-controls span {
+    font-size: 1rem;
+    font-weight: bold;
+    color: #2c3e50;
+    background-color: white;
+    padding: 0.5rem 0.8rem;
+    border-radius: 6px;
+    min-width: 44px;
+    text-align: center;
+    border: 2px solid #4da6ff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+}
+
+/* Extra small screens */
+@media (max-width: 480px) {
+  .quantity-controls {
+    gap: 0.25rem;
+    margin-top: 0.5rem;
+    padding: 0.2rem;
+  }
+
+  .quantity-controls button {
+    width: 32px;
+    height: 32px;
+    font-size: 1rem;
+  }
+
+  .quantity-controls span {
+    font-size: 0.9rem;
+    padding: 0.4rem 0.6rem;
+    min-width: 40px;
   }
 }

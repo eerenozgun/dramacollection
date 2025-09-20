@@ -19,12 +19,24 @@ const CartDrawer: React.FC<Props> = ({ isOpen, onClose }) => {
     setCart((prev) => prev.filter((item) => item.id !== id));
   };
 
+  const handleCheckoutClick = () => {
+    // Mobilde sepet panelini kapat
+    onClose();
+  };
+
   return (
-    <div className={`cart-drawer ${isOpen ? 'open' : ''}`}>
-      <div className="cart-header">
-        <h2>Sepetiniz</h2>
-        <button className="close-button" onClick={onClose}>✖</button>
-      </div>
+    <>
+      {/* Mobile backdrop */}
+      <div 
+        className={`cart-backdrop ${isOpen ? 'open' : ''}`} 
+        onClick={onClose}
+      />
+      
+      <div className={`cart-drawer ${isOpen ? 'open' : ''}`}>
+        <div className="cart-header">
+          <h2>Sepetiniz</h2>
+          <button className="close-button" onClick={onClose}>✖</button>
+        </div>
 
       {cart.length === 0 ? (
         <p>Sepetiniz boş.</p>
@@ -43,10 +55,14 @@ const CartDrawer: React.FC<Props> = ({ isOpen, onClose }) => {
                 />
                 <div className="cart-details">
                   <h3>{item.name}</h3>
-                  <p>{`₺${item.price} x ${item.quantity}`}</p>
-                  <p>{`Ara toplam: ₺${(item.price * item.quantity).toFixed(2)}`}</p>
+                  <div className="price-quantity">
+                    <span className="price">₺{item.price}</span>
+                    <span className="quantity-display">Adet: {item.quantity}</span>
+                  </div>
+                  <p className="subtotal">{`Ara toplam: ₺${(item.price * item.quantity).toFixed(2)}`}</p>
                   <div className="cart-buttons">
                     <button onClick={() => removeFromCart(item.id)}>−</button>
+                    <span className="quantity-number">{item.quantity}</span>
                     <button onClick={() => addToCart(item)}>+</button>
                   </div>
                 </div>
@@ -63,12 +79,13 @@ const CartDrawer: React.FC<Props> = ({ isOpen, onClose }) => {
 
           <h3 className="cart-total">Toplam: ₺{total.toFixed(2)}</h3>
 
-          <Link to="/checkout">
+          <Link to="/checkout" onClick={handleCheckoutClick}>
             <button className="checkout-button">Ödeme Yap</button>
           </Link>
         </>
       )}
-    </div>
+      </div>
+    </>
   );
 };
 
