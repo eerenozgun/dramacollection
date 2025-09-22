@@ -441,12 +441,16 @@ const AdminDashboard: React.FC = () => {
                     <option value="sahmeran">Şahmeran</option>
                     <option value="y-necklace">Y Kolye</option>
                     
-                    {/* Firebase'den gelen kategoriler */}
-                    {categories.map(category => (
-                      <option key={category.id} value={category.slug}>
-                        {category.name}
-                      </option>
-                    ))}
+                    {/* Firebase'den gelen kategoriler - DEBUG */}
+                    <option disabled>--- Firebase Kategoriler ---</option>
+                    {categories.map(category => {
+                      console.log('🔥 Kategori seçenekte:', category.name, category.slug);
+                      return (
+                        <option key={category.id} value={category.slug}>
+                          {category.name} (Firebase)
+                        </option>
+                      );
+                    })}
                   </select>
                   <input
                     type="url"
