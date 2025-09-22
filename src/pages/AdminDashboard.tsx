@@ -365,24 +365,40 @@ const AdminDashboard: React.FC = () => {
                 <button type="submit" className="btn-primary">Kategori Ekle</button>
               </form>
               
-              <div className="categories-list">
-                <p>Debug: Kategoriler sayısı: {categories.length}</p>
-                <p>Debug: Kategoriler: {JSON.stringify(categories)}</p>
+              <div style={{background: 'yellow', padding: '20px', margin: '20px 0'}}>
+                <h4>KATEGORİLER DEBUG</h4>
+                <p>Kategoriler sayısı: {categories.length}</p>
+                <p>Kategoriler: {JSON.stringify(categories, null, 2)}</p>
+                
                 {categories.length === 0 ? (
-                  <p>Henüz kategori bulunmuyor</p>
+                  <p style={{color: 'red', fontSize: '20px'}}>HENÜZ KATEGORİ BULUNMUYOR</p>
                 ) : (
                   <div>
-                    <p>Kategoriler bulundu! ({categories.length} adet)</p>
+                    <p style={{color: 'green', fontSize: '20px'}}>KATEGORİLER BULUNDU! ({categories.length} adet)</p>
                     {categories.map(category => {
                       console.log('🔄 Rendering category:', category.name);
                       return (
-                        <div key={category.id} className="category-item" style={{border: '2px solid red', margin: '10px', padding: '10px'}}>
-                          <span style={{color: 'black', fontSize: '16px'}}>{category.name}</span>
+                        <div key={category.id} style={{
+                          border: '3px solid red', 
+                          margin: '10px', 
+                          padding: '20px',
+                          background: 'white',
+                          fontSize: '18px',
+                          fontWeight: 'bold'
+                        }}>
+                          <span style={{color: 'black'}}>KATEGORİ: {category.name}</span>
                           <button 
                             onClick={() => handleDeleteCategory(category.id)}
-                            className="btn-danger btn-small"
+                            style={{
+                              background: 'red',
+                              color: 'white',
+                              padding: '10px',
+                              marginLeft: '10px',
+                              border: 'none',
+                              borderRadius: '5px'
+                            }}
                           >
-                            Sil
+                            SİL
                           </button>
                         </div>
                       );
