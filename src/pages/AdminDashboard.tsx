@@ -82,11 +82,13 @@ const AdminDashboard: React.FC = () => {
 
   const loadCategories = async () => {
     try {
+      console.log('🔄 Kategoriler yükleniyor...');
       const categoriesSnapshot = await getDocs(collection(db, 'categories'));
       const categoriesData = categoriesSnapshot.docs.map(doc => ({
         id: doc.id,
         ...doc.data()
       }));
+      console.log('📋 Yüklenen kategoriler:', categoriesData);
       setCategories(categoriesData);
     } catch (error) {
       console.error('Kategoriler yüklenemedi:', error);
@@ -223,14 +225,22 @@ const AdminDashboard: React.FC = () => {
     if (!newCategory.trim()) return;
 
     try {
-      await addDoc(collection(db, 'categories'), {
+      console.log('➕ Kategori ekleniyor:', newCategory.trim());
+      const categoryData = {
         name: newCategory.trim(),
         slug: newCategory.toLowerCase().replace(/\s+/g, '-'),
         createdAt: new Date(),
         isActive: true
-      });
+      };
+      console.log('📝 Kategori verisi:', categoryData);
+      
+      const docRef = await addDoc(collection(db, 'categories'), categoryData);
+      console.log('✅ Kategori eklendi, ID:', docRef.id);
+      
       alert('Kategori başarıyla eklendi!');
       setNewCategory('');
+      
+      console.log('🔄 Kategoriler yeniden yükleniyor...');
       await loadCategories();
     } catch (error) {
       console.error('Kategori eklenirken hata:', error);
@@ -348,17 +358,22 @@ const AdminDashboard: React.FC = () => {
               </form>
               
               <div className="categories-list">
-                {categories.map(category => (
-                  <div key={category.id} className="category-item">
-                    <span>{category.name}</span>
-                    <button 
-                      onClick={() => handleDeleteCategory(category.id)}
-                      className="btn-danger btn-small"
-                    >
-                      Sil
-                    </button>
-                  </div>
-                ))}
+                {console.log('🎯 Render edilen kategoriler:', categories)}
+                {categories.length === 0 ? (
+                  <p>Henüz kategori bulunmuyor</p>
+                ) : (
+                  categories.map(category => (
+                    <div key={category.id} className="category-item">
+                      <span>{category.name}</span>
+                      <button 
+                        onClick={() => handleDeleteCategory(category.id)}
+                        className="btn-danger btn-small"
+                      >
+                        Sil
+                      </button>
+                    </div>
+                  ))
+                )}
               </div>
             </div>
 
