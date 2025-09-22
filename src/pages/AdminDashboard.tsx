@@ -22,6 +22,7 @@ const AdminDashboard: React.FC = () => {
   const [orders, setOrders] = useState<any[]>([]);
   const [products, setProducts] = useState<any[]>([]);
   const [users, setUsers] = useState<any[]>([]);
+  const [categories, setCategories] = useState<any[]>([]);
   const [stats, setStats] = useState({
     totalOrders: 0,
     totalRevenue: 0,
@@ -29,6 +30,11 @@ const AdminDashboard: React.FC = () => {
     totalUsers: 0
   });
   const [loading, setLoading] = useState(true);
+  
+  // Ürün yönetimi state'leri
+  const [editingProduct, setEditingProduct] = useState<any>(null);
+  const [showProductModal, setShowProductModal] = useState(false);
+  const [newCategory, setNewCategory] = useState('');
 
   const authContext = useContext(AuthContext);
   const { canAccessAdmin, adminLogout, loading: adminLoading } = useAdmin();
@@ -74,6 +80,19 @@ const AdminDashboard: React.FC = () => {
     }
   };
 
+  const loadCategories = async () => {
+    try {
+      const categoriesSnapshot = await getDocs(collection(db, 'categories'));
+      const categoriesData = categoriesSnapshot.docs.map(doc => ({
+        id: doc.id,
+        ...doc.data()
+      }));
+      setCategories(categoriesData);
+    } catch (error) {
+      console.error('Kategoriler yüklenemedi:', error);
+    }
+  };
+
   const calculateStats = () => {
     const totalOrders = orders.length;
     const totalRevenue = orders.reduce((sum, order) => sum + (order.total || 0), 0);
@@ -101,7 +120,8 @@ const AdminDashboard: React.FC = () => {
         await Promise.all([
           loadOrders(),
           loadProducts(),
-          loadUsers()
+          loadUsers(),
+          loadCategories()
         ]);
         setLoading(false);
       };
@@ -142,6 +162,93 @@ const AdminDashboard: React.FC = () => {
     } catch (error) {
       console.error('Ürün eklenirken hata:', error);
       alert('Ürün eklenirken bir hata oluştu!');
+    }
+  };
+
+  // Ürün düzenleme
+  const handleEditProduct = (product: any) => {
+    setEditingProduct(product);
+    setNewProduct({
+      name: product.name || '',
+      price: product.price?.toString() || '',
+      category: product.category || 'necklaces',
+      description: product.description || '',
+      image: product.image || ''
+    });
+    setShowProductModal(true);
+  };
+
+  // Ürün güncelleme
+  const handleUpdateProduct = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!editingProduct) return;
+
+    try {
+      const productData = {
+        ...newProduct,
+        price: parseFloat(newProduct.price),
+        updatedAt: new Date()
+      };
+
+      await updateDoc(doc(db, 'products', editingProduct.id), productData);
+      alert('Ürün başarıyla güncellendi!');
+      setShowProductModal(false);
+      setEditingProduct(null);
+      setNewProduct({ name: '', price: '', category: 'necklaces', description: '', image: '' });
+      
+      await loadProducts();
+    } catch (error) {
+      console.error('Ürün güncellenirken hata:', error);
+      alert('Ürün güncellenirken bir hata oluştu!');
+    }
+  };
+
+  // Ürün silme
+  const handleDeleteProduct = async (productId: string) => {
+    if (!confirm('Bu ürünü silmek istediğinizden emin misiniz?')) return;
+
+    try {
+      await deleteDoc(doc(db, 'products', productId));
+      alert('Ürün başarıyla silindi!');
+      await loadProducts();
+    } catch (error) {
+      console.error('Ürün silinirken hata:', error);
+      alert('Ürün silinirken bir hata oluştu!');
+    }
+  };
+
+  // Kategori ekleme
+  const handleAddCategory = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!newCategory.trim()) return;
+
+    try {
+      await addDoc(collection(db, 'categories'), {
+        name: newCategory.trim(),
+        slug: newCategory.toLowerCase().replace(/\s+/g, '-'),
+        createdAt: new Date(),
+        isActive: true
+      });
+      alert('Kategori başarıyla eklendi!');
+      setNewCategory('');
+      await loadCategories();
+    } catch (error) {
+      console.error('Kategori eklenirken hata:', error);
+      alert('Kategori eklenirken bir hata oluştu!');
+    }
+  };
+
+  // Kategori silme
+  const handleDeleteCategory = async (categoryId: string) => {
+    if (!confirm('Bu kategoriyi silmek istediğinizden emin misiniz?')) return;
+
+    try {
+      await deleteDoc(doc(db, 'categories', categoryId));
+      alert('Kategori başarıyla silindi!');
+      await loadCategories();
+    } catch (error) {
+      console.error('Kategori silinirken hata:', error);
+      alert('Kategori silinirken bir hata oluştu!');
     }
   };
 
@@ -226,6 +333,36 @@ const AdminDashboard: React.FC = () => {
           <div className="products-section">
             <h2>Ürün Yönetimi</h2>
             
+            {/* Kategori Yönetimi */}
+            <div className="category-management">
+              <h3>Kategori Yönetimi</h3>
+              <form onSubmit={handleAddCategory} className="category-form">
+                <input
+                  type="text"
+                  placeholder="Yeni Kategori Adı"
+                  value={newCategory}
+                  onChange={(e) => setNewCategory(e.target.value)}
+                  required
+                />
+                <button type="submit" className="btn-primary">Kategori Ekle</button>
+              </form>
+              
+              <div className="categories-list">
+                {categories.map(category => (
+                  <div key={category.id} className="category-item">
+                    <span>{category.name}</span>
+                    <button 
+                      onClick={() => handleDeleteCategory(category.id)}
+                      className="btn-danger btn-small"
+                    >
+                      Sil
+                    </button>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Ürün Ekleme Formu */}
             <div className="add-product-form">
               <h3>Yeni Ürün Ekle</h3>
               <form onSubmit={handleAddProduct}>
@@ -250,10 +387,11 @@ const AdminDashboard: React.FC = () => {
                     value={newProduct.category}
                     onChange={(e) => setNewProduct({...newProduct, category: e.target.value})}
                   >
-                    <option value="necklaces">Kolyeler</option>
-                    <option value="earrings">Küpeler</option>
-                    <option value="bracelets">Bilezikler</option>
-                    <option value="piercings">Piercing</option>
+                    {categories.map(category => (
+                      <option key={category.id} value={category.slug}>
+                        {category.name}
+                      </option>
+                    ))}
                   </select>
                   <input
                     type="url"
@@ -274,6 +412,44 @@ const AdminDashboard: React.FC = () => {
                   Ürün Ekle
                 </button>
               </form>
+            </div>
+
+            {/* Ürün Listesi */}
+            <div className="products-list">
+              <h3>Mevcut Ürünler</h3>
+              {loading ? (
+                <p>Yükleniyor...</p>
+              ) : products.length === 0 ? (
+                <p>Henüz ürün bulunmuyor</p>
+              ) : (
+                <div className="products-grid">
+                  {products.map(product => (
+                    <div key={product.id} className="product-card">
+                      <img src={product.image} alt={product.name} className="product-image" />
+                      <div className="product-info">
+                        <h4>{product.name}</h4>
+                        <p className="product-price">₺{product.price}</p>
+                        <p className="product-category">{product.category}</p>
+                        <p className="product-stock">Stok: {product.stock || 0}</p>
+                        <div className="product-actions">
+                          <button 
+                            onClick={() => handleEditProduct(product)}
+                            className="btn-primary btn-small"
+                          >
+                            Düzenle
+                          </button>
+                          <button 
+                            onClick={() => handleDeleteProduct(product.id)}
+                            className="btn-danger btn-small"
+                          >
+                            Sil
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              )}
             </div>
           </div>
         )}
