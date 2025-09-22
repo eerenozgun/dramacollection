@@ -138,6 +138,11 @@ const AdminDashboard: React.FC = () => {
     }
   }, [orders, products, users]);
 
+  // Kategoriler debug
+  useEffect(() => {
+    console.log('🎯 Render edilen kategoriler:', categories);
+  }, [categories]);
+
   const handleAdminLogout = () => {
     adminLogout();
     navigate('/');
@@ -358,7 +363,6 @@ const AdminDashboard: React.FC = () => {
               </form>
               
               <div className="categories-list">
-                {console.log('🎯 Render edilen kategoriler:', categories)}
                 {categories.length === 0 ? (
                   <p>Henüz kategori bulunmuyor</p>
                 ) : (
