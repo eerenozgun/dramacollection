@@ -138,11 +138,12 @@ const AdminDashboard: React.FC = () => {
     }
   }, [orders, products, users]);
 
-  // Kategoriler debug
+  // Kategoriler debug - sadece değiştiğinde log
   useEffect(() => {
-    console.log('🎯 Render edilen kategoriler:', categories);
-    console.log('📊 Kategoriler sayısı:', categories.length);
-    console.log('🔍 Kategoriler state:', categories);
+    if (categories.length > 0) {
+      console.log('🎯 Render edilen kategoriler:', categories);
+      console.log('📊 Kategoriler sayısı:', categories.length);
+    }
   }, [categories]);
 
   const handleAdminLogout = () => {
@@ -365,24 +366,20 @@ const AdminDashboard: React.FC = () => {
               </form>
               
               <div className="categories-list">
-                <p>Debug: Kategoriler sayısı: {categories.length}</p>
                 {categories.length === 0 ? (
                   <p>Henüz kategori bulunmuyor</p>
                 ) : (
-                  categories.map(category => {
-                    console.log('🔄 Rendering category:', category);
-                    return (
-                      <div key={category.id} className="category-item">
-                        <span>{category.name}</span>
-                        <button 
-                          onClick={() => handleDeleteCategory(category.id)}
-                          className="btn-danger btn-small"
-                        >
-                          Sil
-                        </button>
-                      </div>
-                    );
-                  })
+                  categories.map(category => (
+                    <div key={category.id} className="category-item">
+                      <span>{category.name}</span>
+                      <button 
+                        onClick={() => handleDeleteCategory(category.id)}
+                        className="btn-danger btn-small"
+                      >
+                        Sil
+                      </button>
+                    </div>
+                  ))
                 )}
               </div>
             </div>
