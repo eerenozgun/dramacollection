@@ -1,4 +1,4 @@
-// Firestore Security Rules
+// Firestore Security Rules - Production Ready
 rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
@@ -45,7 +45,7 @@ service cloud.firestore {
                 && get(/databases/$(database)/documents/admins/$(request.auth.token.email)).data.isAdmin == true));
     }
     
-    // Diğer tüm koleksiyonlar için varsayılan kural
+    // Diğer tüm koleksiyonlar için varsayılan kural - ERİŞİM YOK
     match /{document=**} {
       allow read, write: if false;
     }
