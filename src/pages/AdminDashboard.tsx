@@ -433,6 +433,15 @@ const AdminDashboard: React.FC = () => {
                     value={newProduct.category}
                     onChange={(e) => setNewProduct({...newProduct, category: e.target.value})}
                   >
+                    {/* Mevcut kategoriler */}
+                    <option value="necklaces">Kolyeler</option>
+                    <option value="earrings">Küpeler</option>
+                    <option value="bracelets">Bilezikler</option>
+                    <option value="piercings">Piercing</option>
+                    <option value="sahmeran">Şahmeran</option>
+                    <option value="y-necklace">Y Kolye</option>
+                    
+                    {/* Firebase'den gelen kategoriler */}
                     {categories.map(category => (
                       <option key={category.id} value={category.slug}>
                         {category.name}
