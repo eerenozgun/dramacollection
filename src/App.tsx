@@ -15,10 +15,13 @@ import Checkout from './pages/Checkout';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import ForgotPassword from './pages/ForgotPassword';
+import AdminLogin from './pages/AdminLogin';
+import AdminDashboard from './pages/AdminDashboard';
 
 import { CartProvider } from './context/CartContext';
 import { FavoritesProvider } from './context/FavoritesContext';
 import { AuthProvider } from './context/AuthContext';
+import { AdminProvider } from './context/AdminContext';
 
 const App: React.FC = () => {
   const [isCartOpen, setCartOpen] = useState(false);
@@ -50,9 +53,10 @@ const App: React.FC = () => {
 
   return (
     <AuthProvider>
-      <FavoritesProvider>
-        <CartProvider>
-          <Router>
+      <AdminProvider>
+        <FavoritesProvider>
+          <CartProvider>
+            <Router>
             <ScrollToTop />
             <Header 
               onCartClick={handleCartOpen}
@@ -80,10 +84,13 @@ const App: React.FC = () => {
               <Route path="/login" element={<Login />} />
               <Route path="/register" element={<Register />} />
               <Route path="/forgot-password" element={<ForgotPassword />} />
+              <Route path="/admin/login" element={<AdminLogin />} />
+              <Route path="/admin/dashboard" element={<AdminDashboard />} />
             </Routes>
-          </Router>
-        </CartProvider>
-      </FavoritesProvider>
+            </Router>
+          </CartProvider>
+        </FavoritesProvider>
+      </AdminProvider>
     </AuthProvider>
   );
 };

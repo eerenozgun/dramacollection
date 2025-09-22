@@ -1,8 +1,6 @@
 import React, { createContext, useState, useEffect, useContext } from 'react';
 import { Product } from '../types/Product';
 import { AuthContext } from './AuthContext';
-import { db } from '../firebase';
-import { doc, setDoc, getDoc } from 'firebase/firestore';
 
 type FavoritesContextType = {
   favorites: Product[];
@@ -19,37 +17,37 @@ export const FavoritesProvider: React.FC<{ children: React.ReactNode }> = ({ chi
 
   const uid = auth?.user?.email;
 
-  const loadFavoritesFromFirestore = async () => {
+  const loadFavoritesFromLocalStorage = () => {
     if (!uid) return;
     try {
-      const userRef = doc(db, 'users', uid);
-      const snapshot = await getDoc(userRef);
-      const data = snapshot.exists() ? snapshot.data().favorites || [] : [];
-      setFavorites(Array.isArray(data) ? data : []);
+      const storedFavorites = localStorage.getItem(`favorites:${uid}`);
+      if (storedFavorites) {
+        const data = JSON.parse(storedFavorites);
+        setFavorites(Array.isArray(data) ? data : []);
+      }
     } catch (error) {
       console.error('Favori verisi yüklenemedi:', error);
     }
   };
 
-  const saveFavoritesToFirestore = async (favoritesData: Product[]) => {
+  const saveFavoritesToLocalStorage = (favoritesData: Product[]) => {
     if (!uid) return;
     try {
-      const userRef = doc(db, 'users', uid);
-      await setDoc(userRef, { favorites: favoritesData }, { merge: true });
+      localStorage.setItem(`favorites:${uid}`, JSON.stringify(favoritesData));
     } catch (error) {
       console.error('Favori verisi kaydedilemedi:', error);
     }
   };
 
   useEffect(() => {
-    loadFavoritesFromFirestore();
+    loadFavoritesFromLocalStorage();
   }, [uid]);
 
   const addToFavorites = (product: Product) => {
     setFavorites((prev) => {
       const exists = prev.some((item) => item.id === product.id);
       const updated = exists ? prev : [...prev, product];
-      saveFavoritesToFirestore(updated);
+      saveFavoritesToLocalStorage(updated);
       return updated;
     });
   };
@@ -57,7 +55,7 @@ export const FavoritesProvider: React.FC<{ children: React.ReactNode }> = ({ chi
   const removeFromFavorites = (id: string) => {
     setFavorites((prev) => {
       const updated = prev.filter((item) => item.id !== id);
-      saveFavoritesToFirestore(updated);
+      saveFavoritesToLocalStorage(updated);
       return updated;
     });
   };

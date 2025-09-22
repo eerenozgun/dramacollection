@@ -3,6 +3,7 @@ import { Link, useLocation } from 'react-router-dom';
 import './Header.css';
 import { AuthContext } from '../context/AuthContext';
 import { CartContext } from '../context/CartContext';
+import { useAdmin } from '../context/AdminContext';
 
 type Props = {
   onCartClick: () => void;
@@ -13,6 +14,7 @@ type Props = {
 const Header: React.FC<Props> = ({ onCartClick, onSortChange, currentSort = 'name' }) => {
   const auth = useContext(AuthContext);
   const cart = useContext(CartContext);
+  const { isAdmin, canAccessAdmin } = useAdmin();
   const location = useLocation();
   const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [showSortDropdown, setShowSortDropdown] = useState(false);
@@ -123,6 +125,15 @@ const Header: React.FC<Props> = ({ onCartClick, onSortChange, currentSort = 'nam
               <div className="nav-glow"></div>
             </Link>
 
+            {/* Admin Link - Sadece admin kullanıcılar için görünür */}
+            {isAdmin && (
+              <Link to={canAccessAdmin ? "/admin/dashboard" : "/admin/login"} className="nav-link-ultra admin-link">
+                <span className="nav-icon">⚙️</span>
+                <span className="nav-text">Admin</span>
+                <div className="nav-glow"></div>
+              </Link>
+            )}
+
             {auth?.user ? (
               <>
                 <div className="nav-user-ultra" title={`Hoşgeldin, ${fullName}`}>
@@ -217,6 +228,15 @@ const Header: React.FC<Props> = ({ onCartClick, onSortChange, currentSort = 'nam
                 <span className="mobile-nav-text">Favorilerim</span>
                 <div className="mobile-nav-glow"></div>
               </Link>
+
+              {/* Admin Link - Mobil menü için */}
+              {isAdmin && (
+                <Link to={canAccessAdmin ? "/admin/dashboard" : "/admin/login"} className="mobile-nav-link-ultra admin-link" onClick={handleMobileMenuClose}>
+                  <span className="mobile-nav-icon">⚙️</span>
+                  <span className="mobile-nav-text">Admin Panel</span>
+                  <div className="mobile-nav-glow"></div>
+                </Link>
+              )}
               
               <button onClick={handleMobileCartClick} className="mobile-cart-button-ultra">
                 <div className="mobile-cart-icon-container">

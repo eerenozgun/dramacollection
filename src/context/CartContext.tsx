@@ -22,33 +22,33 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
   const auth = useContext(AuthContext);
   const [cart, setCart] = useState<CartItem[]>([]);
 
-  const loadCartFromFirestore = async (uid: string) => {
+  const loadCartFromLocalStorage = (uid: string) => {
     try {
-      const userRef = doc(db, 'users', uid);
-      const snapshot = await getDoc(userRef);
-      const data = snapshot.exists() ? snapshot.data().cart || [] : [];
-      const sanitizedCart = Array.isArray(data)
-        ? data.filter(
-            (item) =>
-              item.id &&
-              typeof item.price === 'number' &&
-              typeof item.quantity === 'number' &&
-              typeof item.stock === 'number' &&
-              item.price >= 0 &&
-              item.quantity > 0 &&
-              item.stock >= item.quantity
-          )
-        : [];
-      setCart(sanitizedCart);
+      const storedCart = localStorage.getItem(`cart:${uid}`);
+      if (storedCart) {
+        const data = JSON.parse(storedCart);
+        const sanitizedCart = Array.isArray(data)
+          ? data.filter(
+              (item) =>
+                item.id &&
+                typeof item.price === 'number' &&
+                typeof item.quantity === 'number' &&
+                typeof item.stock === 'number' &&
+                item.price >= 0 &&
+                item.quantity > 0 &&
+                item.stock >= item.quantity
+            )
+          : [];
+        setCart(sanitizedCart);
+      }
     } catch (error) {
       console.error('Sepet verisi yüklenemedi:', error);
     }
   };
 
-  const saveCartToFirestore = async (uid: string, cartData: CartItem[]) => {
+  const saveCartToLocalStorage = (uid: string, cartData: CartItem[]) => {
     try {
-      const userRef = doc(db, 'users', uid);
-      await setDoc(userRef, { cart: cartData }, { merge: true });
+      localStorage.setItem(`cart:${uid}`, JSON.stringify(cartData));
     } catch (error) {
       console.error('Sepet verisi kaydedilemedi:', error);
     }
@@ -57,7 +57,7 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
   useEffect(() => {
     if (auth?.user?.email) {
       const uid = auth.user.email;
-      loadCartFromFirestore(uid);
+      loadCartFromLocalStorage(uid);
     } else {
       setCart([]);
     }
@@ -82,7 +82,7 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
         : [...prevCart, { ...product, quantity: 1, stock }];
 
       if (auth?.user?.email) {
-        saveCartToFirestore(auth.user.email, updatedCart);
+        saveCartToLocalStorage(auth.user.email, updatedCart);
       }
 
       return updatedCart;
@@ -103,7 +103,7 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
         .filter((item) => item.quantity > 0);
 
       if (auth?.user?.email) {
-        saveCartToFirestore(auth.user.email, updatedCart);
+        saveCartToLocalStorage(auth.user.email, updatedCart);
       }
 
       return updatedCart;
@@ -120,7 +120,7 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
             }
           : item
       );
-      if (auth?.user?.email) saveCartToFirestore(auth.user.email, updatedCart);
+      if (auth?.user?.email) saveCartToLocalStorage(auth.user.email, updatedCart);
       return updatedCart;
     });
   };
@@ -137,7 +137,7 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
             : item
         )
         .filter((item) => item.quantity > 0);
-      if (auth?.user?.email) saveCartToFirestore(auth.user.email, updatedCart);
+      if (auth?.user?.email) saveCartToLocalStorage(auth.user.email, updatedCart);
       return updatedCart;
     });
   };
