@@ -366,20 +366,24 @@ const AdminDashboard: React.FC = () => {
               </form>
               
               <div className="categories-list">
+                <p>Debug: Kategoriler sayısı: {categories.length}</p>
                 {categories.length === 0 ? (
                   <p>Henüz kategori bulunmuyor</p>
                 ) : (
-                  categories.map(category => (
-                    <div key={category.id} className="category-item">
-                      <span>{category.name}</span>
-                      <button 
-                        onClick={() => handleDeleteCategory(category.id)}
-                        className="btn-danger btn-small"
-                      >
-                        Sil
-                      </button>
-                    </div>
-                  ))
+                  categories.map(category => {
+                    console.log('🔄 Rendering category:', category.name);
+                    return (
+                      <div key={category.id} className="category-item">
+                        <span>{category.name}</span>
+                        <button 
+                          onClick={() => handleDeleteCategory(category.id)}
+                          className="btn-danger btn-small"
+                        >
+                          Sil
+                        </button>
+                      </div>
+                    );
+                  })
                 )}
               </div>
             </div>
